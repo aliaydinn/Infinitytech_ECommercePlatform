@@ -1,0 +1,46 @@
+﻿@model ProductUpdateDto
+
+<div class="card-body" style="font-weight:bold; font-size:20px;">
+    <h4 class="card-title" style="font-weight:bold;">Product Update Page</h4>
+    <form class="forms-sample" method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Product" asp-action="UpdateProduct">
+
+        <div asp-validation-summary="All" style="color:red; font-weight:bold;"></div>
+        <input  asp-for="Id" type="hidden" />
+
+        <div class="form-group">
+            <label asp-for="CategoryId" >Product Category</label>
+            <select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))"></select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name" for="exampleInputUsername1">Product Name</label>
+            <input asp-for="Name" type="text" class="form-control" id="exampleInputUsername1" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" for="exampleInputEmail1">Product Price</label>
+            <input asp-for="Price" class="form-control" placeholder="Price">
+        </div>
+        <div class="form-group">
+            <label asp-for="Information">Product Information</label>
+            <textarea class="form-control" rows="15" asp-for="Information"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="Information">Product BriefInformation</label>
+            <textarea class="form-control" rows="3" asp-for="BriefInformation"></textarea>
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column;">
+            <label asp-for="ImageUrl" style="font-weight:bold; align-self: flex-start;">Current Product Image</label>
+            <img class="rounded img-fluid" src="@Model.ImageUrl" style="align-self: flex-start;">
+        </div>
+
+
+        <div class="form-group">
+            <label for="formFile"  asp-for="ImageUrl" style="font-weight:bold;">Product Image</label>
+            <input class="form-control" type="file" name="file">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary mr-2">Update</button>
+        <button class="btn btn-warning" asp-controller="Product" asp-action="Index" >Cancel</button>
+    </form>
+</div>

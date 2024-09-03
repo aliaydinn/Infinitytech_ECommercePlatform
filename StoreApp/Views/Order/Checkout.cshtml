@@ -1,0 +1,122 @@
+﻿@model Order
+<head>
+    <link rel="stylesheet" href="~/css/Checkout.css">
+</head>
+
+<br />
+<br />
+<div class="container">
+    <h4 style="font-weight: bold; border-bottom: 2px solid black; font-size: 30px; padding-bottom: 10px; display: inline-block;">Fatura Detay</h4>
+    <br /><br /><br />
+    <form method="post" asp-action="CheckOut">
+        <div class="row">
+            <div class="col-lg-8 col-md-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p style="text-align: left; color: black; font-weight: bold; font-size: 18px;">Ad</p>
+                            <input type="text" asp-for="FirstName" class="form-control form-control-lg" style="border: 1px solid #000; font-size: 16px;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p style="text-align: left; color: black; font-weight: 700; font-size: 18px;">Soyad<span>*</span></p>
+                            <input type="text" asp-for="LastName" class="form-control form-control-lg" style="border: 1px solid #000; font-size: 16px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout__input">
+                    <p style="text-align: left; color: black; font-weight: bold; font-size: 18px; margin-bottom: 15px;">Adres</p>
+                    <input type="text" asp-for="Address" placeholder="Adres" class="form-control form-control-lg" style="border: 1px solid #000; font-size: 16px;">
+                </div>
+
+                <div class="checkout__input">
+                    <p style="text-align: left; color: black; font-weight: bold; font-size: 18px;">Şehir</p>
+                    <select asp-for="City" class="form-control form-control-lg" id="citySelect" style="border: 1px solid #000; font-size: 16px;">
+                        <option value="">Şehir Seçin</option>
+                    </select>
+                </div>
+                <input type="hidden" id="cityName" name="CityName" value=""> 
+
+                <div class="checkout__input">
+                    <p style="text-align: left; color: black; font-weight: bold; font-size: 18px;">Semt<span>*</span></p>
+                    <select asp-for="District" class="form-control form-control-lg" id="districtSelect" style="border: 1px solid #000; font-size: 16px;">
+                        <option value="">Semt Seçin</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p style="text-align: left; color: black; font-weight: bold; font-size: 18px;">Telefon</p>
+                            <input type="number" asp-for="Phone" placeholder="Telefon" class="form-control form-control-lg" style="border: 1px solid #000; font-size: 16px;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="checkout__input">
+                            <p style="text-align: left; color: black; font-weight: bold; font-size: 18px;">Email Adresi<span>*</span></p>
+                            <input type="text" asp-for="Email" placeholder="Email" class="form-control form-control-lg" style="border: 1px solid #000; font-size: 16px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-check" style="margin-top: 15px;">
+                    <input class="form-check-input" type="checkbox" asp-for="GiftWrap">
+                    <label class="form-check-label" for="flexCheckDefault" style="color: black; font-weight: bold; font-size: 18px;">
+                        Hediye Paketi İstiyorum
+                    </label>
+                </div>
+                <br />
+                <div class="checkout__input">
+                    <p style="text-align: left; color: black; font-weight: bold; font-size: 18px;">Müşteri Notu<span>*</span></p>
+                    <input asp-for="Notes" type="text" placeholder="Notunuzu yazın" class="form-control form-control-lg" style="border: 1px solid #000; font-size: 16px;">
+                </div>
+                <br />
+                <button type="submit" class="btn-custom" style="width: 100%; font-size: 18px;">Sipariş Ver</button>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                @await Component.InvokeAsync("CheckoutRightPanel")
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="~/js/cities.js"></script>
+<script src="~/js/districts.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var citySelect = $('#citySelect');
+        var districtSelect = $('#districtSelect');
+        var cityNameInput = $('#cityName');
+
+        
+        cities.sort(function (a, b) {
+            return a.name.localeCompare(b.name); 
+        }).forEach(function (city) {
+            citySelect.append('<option value="' + city.id + '">' + city.name + '</option>');
+        });
+
+       
+        citySelect.change(function () {
+            var selectedCityId = $(this).val();
+            var selectedCity = cities.find(city => city.id == selectedCityId);
+            if (selectedCity) {
+                cityNameInput.val(selectedCity.name); 
+            } else {
+                cityNameInput.val(""); 
+            }
+
+            districtSelect.empty();
+            districtSelect.append('<option value="">Semt Seçin</option>');
+
+           
+            var filteredDistricts = districts.filter(function (district) {
+                return district.il_id === selectedCityId;
+            });
+
+            
+            filteredDistricts.forEach(function (district) {
+                districtSelect.append('<option value="' + district.name + '">' + district.name + '</option>');
+            });
+        });
+    });
+</script>

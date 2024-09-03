@@ -1,0 +1,18 @@
+﻿@model CategoryAddDto
+<div class="card-body">
+    <h4 class="card-title" style="font-weight:bold;">Product Add Page</h4>
+    <form class="forms-sample" method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Category" asp-action="AddCategory">
+
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="Name" for="exampleInputUsername1">Category Name</label>
+            <input asp-for="Name" type="text" class="form-control" id="exampleInputUsername1" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageUrl" for="exampleInputUsername1">Category Image</label>
+            <input  type="file" class="form-control" name="file" >
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Save</button>
+        <button class="btn btn-warning" asp-controller="Category" asp-action="Index">Cancel</button>
+    </form>
+</div>

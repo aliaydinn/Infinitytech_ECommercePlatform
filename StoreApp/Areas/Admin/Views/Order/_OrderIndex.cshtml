@@ -1,0 +1,73 @@
+﻿@model Order
+
+@{
+    var total = Model.CartLines.Sum(c => c.Product.Price * c.Quantity);
+}
+
+<div class="row my-4 shadow-sm p-2 rounded" style="border: 1px solid #000000;">
+    <!-- Customer Information Section -->
+    <div class="col-md-4" style="padding: 1rem; border: 1px solid #000000;">
+        <div class="bg-light rounded-start" style="padding: 1rem;">
+            <h3 class="text-center mb-2" style="color:black;">
+                <i class="fa-solid fa-user" style="font-size:50px; color:darkgrey;"></i>
+                <br />
+                <br />
+                <span style="color:black;">@Model.FirstName @Model.LastName</span>
+            </h3>
+            <hr style="border: 1px solid #000000;" />
+            <p style="font-size: 1em; border-bottom: 1px solid #dee2e6;"><strong>Email:</strong> @Model.Email</p>
+            <p style="font-size: 1em; border-bottom: 1px solid #dee2e6;"><strong>Telefon:</strong> @Model.Phone</p>
+            <p style="font-size: 1em; border-bottom: 1px solid #dee2e6;"><strong>Adres:</strong> @Model.Address</p>
+            <p style="font-size: 1em; border-bottom: 1px solid #dee2e6;"><strong>Şehir:</strong> @Model.City, @Model.District</p>
+            <p style="font-size: 1em; border-bottom: 1px solid #dee2e6;"><strong>Not:</strong> @Model.Notes</p>
+            <p style="font-size: 1em; border-bottom: 1px solid #dee2e6;"><strong>Tarih:</strong> @Model.CreatedDate.ToString("MMMM dd, yyyy")</p>
+            <div class="mt-2 text-center">
+                <span class="badge bg-warning text-dark p-1 m-1">Shipped</span>
+                <span class="badge bg-info text-white p-1 m-1">@((Model.Shipment) ? "Completed" : "In Progress")</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Section -->
+    <div class="col-md-8" style="padding: 1rem;">
+        <div >
+            <h3 class="text-center mb-2" style="color:black; font-weight:bold;">Sipariş Özeti</h3>
+            <br />
+            <ul class="list-group mb-2" style="border: 1px solid #000000;">
+                @foreach (var cartItem in Model.CartLines)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center" style="border: 2px solid #dee2e6;">
+                        <div class="d-flex align-items-center">
+                            <img src="@cartItem.Product.ImageUrl" alt="@cartItem.Product.Name" height="80px" class="rounded mr-2">
+                            <div class="ml-2">
+                                <h5 class="mb-1" style="font-size: 1.3em;">@cartItem.Product.Name</h5>
+                                <small class="text" style="font-size: 1.1em;">Adet: @cartItem.Quantity</small>
+                            </div>
+                        </div>
+                        <span class="font-weight-bold" style="font-size: 1.2em;">
+                            @((cartItem.Quantity * cartItem.Product.Price).ToString("C2"))
+                        </span>
+                    </li>
+                }
+                <li class="list-group-item d-flex justify-content-between align-items-center bg-light font-weight-bold" style="border: 1px solid #dee2e6;">
+                    <span style="font-size: 1em;">Sipariş Toplamı :</span>
+                    <span class="text-success" style="font-size: 1.2em;">@total.ToString("C2")</span>
+                </li>
+            </ul>
+            <br />
+            <!-- Complete Order Button -->
+           
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="text-center">
+            <form method="post" asp-action="Complete">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button type="submit" class="btn btn-primary btn-md w-50" @(Model.Shipment ? "disabled" : "")>
+                    Complete Order
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

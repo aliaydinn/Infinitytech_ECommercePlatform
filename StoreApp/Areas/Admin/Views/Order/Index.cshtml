@@ -1,0 +1,18 @@
+﻿@model IQueryable<Order>
+<div class="text-center my-5">
+    <div class="display-4 font-weight-bold" style="position: relative; display: inline-block;">
+        Siparişler
+        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 4px; background-color: black;"></div>
+    </div>
+</div>
+
+
+@if (Model.Count() > 0)
+{
+    @foreach (var order in Model)
+    {
+        <div class="my-3">
+            <partial name="_OrderIndex" model="@order" />
+        </div>
+    }
+}

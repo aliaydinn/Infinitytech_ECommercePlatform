@@ -1,0 +1,67 @@
+﻿@using StoreApp.Entity.DTOs.AccountDto;
+@model LoginDto
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kullanıcı Giriş & Kayıt Sayfası</title>
+    <link rel="stylesheet" href="~/css/Login.css">
+
+</head>
+<body>
+    <section class="wrapper active">
+        <div class="form signup">
+            <header id="signupHeader">Üye Ol</header>
+            <form id="signupForm" method="post">
+                <input type="text" placeholder="Ad Soyad" required />
+                <input type="text" placeholder="Email" required />
+                <input type="password" placeholder="Şifre" required />
+                <div class="checkbox">
+                    <input type="checkbox" id="signupCheck" />
+                    <label for="signupCheck">Tüm Şartları Ve Koşulları Kabul Ediyorum</label>
+                </div>
+                <input type="submit" value="Kayıt Ol" />
+            </form>
+        </div>
+
+        <div class="form login">
+            <header id="loginHeader">Giriş Yap</header>
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <input type="text" asp-for="Name" placeholder="Email" required />
+                <input type="password" asp-for="Password" placeholder="Şifre" required />
+                <a href="#" id="registerLink">Hesabın Yok Mu?</a>
+                <div asp-validation-summary="All" style="color:red; font-weight:bold;"></div>
+                <input type="submit" value="Giriş Yap" />
+            </form>
+        </div>
+
+        <script>
+            const wrapper = document.querySelector(".wrapper"),
+                signupHeader = document.getElementById("signupHeader"),
+                loginHeader = document.getElementById("loginHeader"),
+                signupForm = document.getElementById("signupForm"),
+                registerLink = document.getElementById("registerLink");
+
+            loginHeader.addEventListener("click", () => {
+                wrapper.classList.add("active");
+            });
+
+            signupHeader.addEventListener("click", () => {
+                window.location.href = "https://localhost:7016/account/register"; 
+            });
+
+            registerLink.addEventListener("click", () => {
+                window.location.href = "https://localhost:7016/account/register";
+            });
+        </script>
+    </section>
+</body>
+</html>
+
+
+

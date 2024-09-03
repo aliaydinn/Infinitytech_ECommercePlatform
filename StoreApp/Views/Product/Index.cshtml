@@ -1,0 +1,119 @@
+﻿@using StoreApp.Entity.DTOs.ProductsDto;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core.Common;
+@using X.PagedList.Web.Common
+@model IPagedList<Product>
+<head>
+    <link rel="stylesheet" href="~/css/ProductIndex.css">
+</head>
+
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3" style="margin-top: 130px;">
+                <div class="hero__categories">
+                    @await Component.InvokeAsync("ProductWithCategories")
+                    <br />
+                    <br />
+                    @await Component.InvokeAsync("ProductFilter")
+
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7" style="padding-left: 140px; margin-top: -20px;">
+                <div class="product__discount">
+                    <div class="section-title ">
+                        <h2>ÜRÜNLER</h2>
+                    </div>
+                </div>
+                <div class="filter__item">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-5">
+                            <div class="filter__sort">
+                                <span>Sırala</span>
+                                <select style="display: none;">
+                                    <option value="0">Default</option>
+                                    <option value="0">Default</option>
+                                </select>
+                                <div class="nice-select" tabindex="0">
+                                    <span class="current">Mevcut</span>
+                                    <ul class="list">
+                                        <li data-value="0" class="option selected">Default</li>
+                                        <li data-value="0" class="option">Default</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="filter__found">
+                                <h6 style="font-weight:bold;color:black; font-size:large; ">Sayfadaki Toplam Ürün <span>(@ViewBag.ProductCount)</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-3">
+                            <div class="filter__option">
+                                <span class="icon_grid-2x2"></span>
+                                <span class="icon_ul"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-6" style="margin-bottom: 50px;">
+                            <div class="product__item" style="border: 2px solid #ddd; border-radius: 5px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                                <a asp-controller="Product" asp-action="GetProductDetail" asp-route-productId="@item.Id">
+                                    <div class="product__item__pic set-bg" data-setbg="@item.ImageUrl" style="height:300px; background-image:url('@item.ImageUrl'); background-size: cover; background-position: center; background-repeat: no-repeat; border-radius: 5px; padding: 0;">
+                                    </div>
+                                </a>
+                                <div class="product__item__text" style="font-size: 18px; font-weight: bold; margin-top: 10px;">
+                                    <a style="display: block; margin-bottom: 8px; color:black;">@item.Name</a>
+                                    <a style="display: block; margin-bottom: 8px; color:black;">@item.Price.ToString("N2") TL</a>
+                                </div>
+                                <br>
+                                <div class="button-group d-flex justify-content-center" style="margin-top: 10px;">
+                                    <a asp-controller="Product" asp-action="GetProductDetail" asp-route-productId="@item.Id" class="btn btn-info mr-2" style="height: 50px; padding: 10px 20px; font-size: 16px; background-color: #f5f5f5; color: black; border: 0.5px solid #000000;margin-bottom: 50px;">
+                                        <i class="fa-solid fa-circle-info"></i>&nbsp;&nbsp;Ürün Detayı
+                                    </a>
+
+                                    <form method="post" id="@item.Id" asp-page="/cart">
+                                        <input type="hidden" name="Id" value="@item.Id">
+                                        <input type="hidden" name="returnUrl" value="/Product/Index/@item.Id">
+                                        <button type="submit" class="btn btn-outline-success" style="height: 50px; padding: 10px 20px; font-size: 16px; border: 0.5px solid #000000;margin-bottom: 50px;">
+                                            <i class="fa-solid fa-basket-shopping"></i>&nbsp;&nbsp;Sepete Ekle
+                                        </button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <a id="whatsapp-order" class="right"  target="_blank">
+                    <span class="fab fa-whatsapp" style="font-size: 24px; margin-right: 10px;"></span>
+                    WhatsApp İletişim
+                </a>
+
+
+
+
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "Product", new { page = page }),
+                new PagedListRenderOptions
+                {
+                ActiveLiElementClass = "active",
+                PageClasses = new[] { "page-link" },
+                LiElementClasses = new[] { "page-item" },
+                UlElementClasses = new[] { "pagination", "justify-content-center", "mt-3" },
+                LinkToNextPageFormat = "Sonraki",
+                LinkToPreviousPageFormat = "Önceki",
+                MaximumPageNumbersToDisplay = 5,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always
+                })
+            </div>
+
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,452 @@
+﻿.hero__search__phone {
+    display: flex; /* İçeriği yatayda hizalar */
+    align-items: center; /* İçeriği dikeyde ortalar */
+    margin-right: 50px; /* Diğer öğelerden sağa boşluk bırakır */
+    margin-left: 0; /* Soldan boşluk bırakmaz */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  
+    position: relative;
+    margin: auto; /* Center the slideshow container */
+}
+
+/* Hide the images by default */
+.mySlides {
+
+    text-align: center; /* Center the content inside */
+}
+
+    /* Center images */
+    .mySlides img {
+        width: 100%;
+        height: 800px; /* Maintain aspect ratio */
+        display: block;
+        margin: 0 auto; /* Center the image */
+    }
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+/* Caption text */
+.text {
+   
+    font-size: 15px;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+   
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 5s; /* Slower transition speed */
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.9;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+.features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.feature-item {
+    text-align: center;
+    flex: 1;
+    padding: 20px;
+}
+
+    .feature-item i {
+        font-size: 50px;
+        margin-bottom: 15px;
+        color: #555; /* İkon rengi */
+    }
+
+    .feature-item h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .feature-item p {
+        font-size: 14px;
+        color: #777;
+    }
+
+/* Eğer ikonlarınız FontAwesome'dan ise, aşağıdaki kodu kullanın */
+.icon {
+    font-family: 'FontAwesome';
+}
+
+.icon-shopping-cart:before {
+    content: "\f07a"; /* Sepet ikonu */
+}
+
+.icon-shield:before {
+    content: "\f3ed"; /* Kalkan ikonu */
+}
+
+.icon-truck:before {
+    content: "\f0d1"; /* Kamyon ikonu */
+}
+
+.icon-headset:before {
+    content: "\f025"; /* Kulaklık ikonu */
+}
+.features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.feature-item {
+    text-align: center;
+    flex: 1;
+    padding: 20px;
+}
+
+    .feature-item i {
+        font-size: 60px; /* İkon boyutu büyütüldü */
+        margin-bottom: 15px;
+        color: #555; /* İkon rengi */
+        font-style: normal;
+    }
+
+    .feature-item h3 {
+        font-size: 24px; /* Başlık boyutu büyütüldü */
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .feature-item p {
+        font-size: 18px; /* Paragraf boyutu büyütüldü */
+        color: #777;
+    }
+
+/* Eğer ikonlarınız FontAwesome'dan ise, aşağıdaki kodu kullanın */
+.icon {
+    font-family: 'FontAwesome';
+}
+
+.icon-shopping-cart:before {
+    content: "\f07a"; /* Sepet ikonu */
+}
+
+.icon-shield:before {
+    content: "\f3ed"; /* Kalkan ikonu */
+}
+
+.icon-truck:before {
+    content: "\f0d1"; /* Kamyon ikonu */
+}
+
+.product__item {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product__item {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.product__item__pic {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.product__item__text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+    .product__item__text .product__name,
+    .product__item__text .product__price {
+        display: block;
+        color: black;
+        margin-bottom: 8px;
+    }
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn {
+    height: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn-info {
+    background-color: #f5f5f5;
+    color: black;
+    border: 0.5px solid #000000;
+}
+
+.btn-outline-success {
+    border: 0.5px solid #000000;
+    background-color: transparent;
+}
+
+
+.pagination .page-item .page-link {
+    background-color: #f5f5f5; /* Arka plan rengi (tıklanmamış) */
+    color: black; /* Yazı rengi (tıklanmamış) */
+    font-size: 18px; /* Yazı boyutu */
+    border: 1px solid #ddd; /* Kenarlık */
+    padding: 10px 15px; /* İç boşluk */
+    margin: 0 5px; /* Kenar boşluğu */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: black; /* Aktif sayfa arka planı */
+    color: white; /* Aktif sayfa yazı rengi */
+    font-size: 18px; /* Yazı boyutu */
+    border: 1px solid black; /* Kenarlık (aktif sayfa) */
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #e9ecef; /* Hover durumunda arka plan rengi */
+    color: black; /* Hover durumunda yazı rengi */
+}
+
+
+
+.whatsapp-support {
+    position: fixed; /* Sabit konumlandırma */
+    bottom: 30px; /* Alt kenardan 20px uzaklıkta */
+    right: 30px; /* Sağ kenardan 20px uzaklıkta */
+    background-color: #048404; /* WhatsApp yeşil rengi */
+    color: #ffffff; /* Metin rengi beyaz */
+    border-radius: 25px; /* Köşeleri yuvarlar */
+    padding: 10px 20px; /* İç boşluk */
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-decoration: none; /* Alt çizgiyi kaldırır */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Gölge efekti */
+    z-index: 1000; /* Diğer içeriklerin üstünde görünmesini sağlar */
+    transition: background-color 0.3s, transform 0.3s; /* Geçiş efektleri */
+}
+
+    .whatsapp-support:hover {
+        background-color: #1DA851; /* Hover efekti */
+        transform: scale(1.03); /* Hover sırasında simgeyi hafifçe büyütür */
+    }
+
+    .whatsapp-support .icon {
+        font-size: 30px; /* Simgenin boyutunu küçültür */
+        margin-right: 8px; /* Simge ile metin arasına boşluk ekler */
+    }
+
+    .whatsapp-support .text {
+        font-weight: bold; /* Metni kalın yapar */
+        line-height: 1.2; /* Satır yüksekliği */
+    }
+
+.mySlides img {
+    width: 100%; /* Resmin genişliği konteynerle uyumlu */
+    border-radius: 15px; /* Köşeleri yuvarlatır, istediğiniz değeri ayarlayabilirsiniz */
+    transition: border-radius 0.5s ease; /* Köşe yuvarlamasında geçiş efekti */
+}
+
+.pagination .page-item .page-link {
+    background-color: #f5f5f5; /* Arka plan rengi */
+    color: black; /* Yazı rengi */
+    font-size: 20px; /* Yazı boyutu */
+    padding: 12px 20px; /* İç boşluk */
+    margin: 0 5px; /* Kenar boşluğu */
+    border: 1px solid #ddd; /* Kenarlık */
+    border-radius: 5px; /* Köşe yuvarlama */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: black; /* Aktif sayfa arka planı */
+    color: white; /* Aktif sayfa yazı rengi */
+    border: 1px solid black; /* Kenarlık (aktif sayfa) */
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #e9ecef; /* Hover durumunda arka plan rengi */
+    color: black; /* Hover durumunda yazı rengi */
+}
+
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Özellikler arasına eşit boşluk bırakır */
+}
+
+.feature-item {
+    flex: 1 1 22%; /* Özellik öğelerini hizalar */
+    margin: 10px; /* Özellikler arasındaki boşluk */
+    padding: 20px; /* İç boşluk */
+    border-right: 1px solid #ccc; /* Sağ kenarda çizgi */
+    text-align: center; /* Metni ortalar */
+}
+
+    .feature-item:last-child {
+        border-right: none; /* Son öğede sağ kenar çizgisini kaldırır */
+    }
+
+.icon {
+    font-size: 24px; /* İkon boyutu */
+    margin-bottom: 10px; /* İkon ile başlık arasındaki boşluk */
+}
+
+.feature-item h3 {
+    margin: 10px 0; /* Başlık ve metin arasındaki boşluk */
+}
+
+.feature-item p {
+    margin: 0; /* Paragraf boşluğunu sıfırlar */
+}
+
+#whatsapp-order {
+    position: fixed;
+    bottom: 40px;
+    z-index: 9999;
+    display: flex;
+    width: 17rem;
+    height: 4rem;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+    justify-content: center;
+    background: #128c7e;
+    border-radius: .4rem;
+}
+
+a#whatsapp-order {
+    background-color: #25d366;
+}
+
+#whatsapp-order.right {
+    right: 10px;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden; /* İçeriğin taşmasını engeller */
+}
+
+.mySlides {
+    display: block; /* Tek bir resmi göstermek için */
+    width: 100%; /* Resmin konteynere uyum sağlamasını sağlar */
+}
+
+img {
+    width: 100%; /* Resmin kapsayıcıya uyum sağlamasını sağlar */
+}
+
+
+
+
+.hero__search__form input[type="text"] {
+    border: 2px solid #333; /* Arama kutusunun kenarlarına koyu gri bir çerçeve ekler */
+    border-radius: 4px; /* Köşeleri yuvarlar */
+    padding: 12px; /* İç boşluk */
+    font-size: 16px; /* Font boyutu */
+    color: #333; /* Metin rengi */
+    margin-right: 10px; /* Sağ boşluk */
+    box-sizing: border-box; /* İç boşluk ve çerçeve genişliği dahil */
+}
+
+.hero__search__form button {
+    border: 2px solid #333; /* Butonun kenarlarına koyu gri bir çerçeve ekler */
+    border-radius: 4px; /* Köşeleri yuvarlar */
+    padding: 12px 20px; /* İç boşluk */
+    font-size: 16px; /* Font boyutu */
+    color: #333; /* Metin rengi */
+    background-color: #f5f5f5; /* Arka plan rengi */
+    cursor: pointer; /* Fare işaretçisi */
+    transition: border-color 0.3s, background-color 0.3s; /* Geçiş efekti */
+}
+
+    .hero__search__form button:hover {
+        border-color: #555; /* Hover durumunda kenar rengi koyulaşır */
+        background-color: #e0e0e0; /* Hover durumunda arka plan rengi değişir */
+    }

@@ -1,0 +1,51 @@
+﻿@using StoreApp.Entity.DTOs.AccountDto;
+@model RegisterDto
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kullanıcı Giriş & Üye Ol</title>
+    <link rel="stylesheet" href="~/css/Register.css">
+
+</head>
+<body>
+    <section class="wrapper active">
+        <div class="form signup">
+            <header id="signupHeader">Üye Ol</header>
+            <form id="signupForm" method="post" asp-controller="Account" asp-action="Register">
+                <input type="text" asp-for="UserName" placeholder="Ad Soyad" required />
+                <input type="text" asp-for="Email" placeholder="Email" required />
+                <input type="password" placeholder="Şifre" asp-for="Password" required />
+                <input type="password" placeholder="Şifre Tekrar" asp-for="CheckPassword" required />
+                <div class="checkbox">
+                    <input type="checkbox" id="signupCheck" />
+                    <label for="signupCheck">Tüm Şartları Ve Koşulları Kabul Ediyorum</label>
+                </div>
+                <div asp-validation-summary="All" style="color:red; font-weight:bold;"></div>
+                <input type="submit" value="Üye Ol" />
+            </form>
+        </div>
+
+       
+        <script>
+            const wrapper = document.querySelector(".wrapper"),
+                signupHeader = document.getElementById("signupHeader"),
+                loginHeader = document.getElementById("loginHeader"),
+                signupForm = document.getElementById("signupForm"),
+                registerLink = document.getElementById("registerLink");
+
+            loginHeader.addEventListener("click", () => {
+                wrapper.classList.add("active");
+            });
+
+         
+        </script>
+    </section>
+</body>
+</html>

@@ -1,0 +1,328 @@
+﻿@page "/cart"
+@model StoreApp.Pages.CartModel
+@{
+}
+<style>
+    .cart-btn-right {
+       
+        padding: 10px 20px; /* Butonun iç boşluklarını ayarlar (yukarı/aşağı, sağ/sol) */
+        font-size: 1.2em; /* Yazı boyutunu büyütür */
+        font-weight: bold; /* Yazıyı kalın yapar */
+        border-radius: 5px; /* Köşeleri yuvarlar */
+        text-align: center; /* Metni ortalar */
+        text-decoration: none; /* Alt çizgiyi kaldırır */
+        color: white; /* Metin rengini beyaz yapar */
+        background-color: #17a2b8; /* Butonun arka plan rengini ayarlar (btn-info rengi) */
+        transition: background-color 0.3s; /* Hover efekti için geçiş ekler */
+    }
+
+        .cart-btn-right:hover {
+            background-color: #138496; /* Hover durumunda arka plan rengini değiştirir */
+        }
+
+    .btn-info.cart-btn-right {
+        padding: 10px 20px; /* Butonun etrafına iç boşluk ekler */
+        display: inline-block; /* Butonun genişliğini arttırır */
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+    }
+
+    .pro-qty {
+        display: flex;
+        align-items: center;
+    }
+
+    .qtybtn {
+        cursor: pointer;
+        font-size: 18px;
+        padding: 5px 10px;
+        background: #ddd;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin: 0 5px;
+    }
+
+    .pro-qty input {
+        width: 40px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin: 0 5px;
+        padding: 5px;
+    }
+    /* Sağ tarafa hizala */
+    .right-align {
+        text-align: right;
+    }
+
+
+    .shoping__cart__quantity {
+        padding-left: 60px; /* Sağ tarafa boşluk ekler */
+    }
+
+    .shoping__discount {
+        padding: 20px; /* İçeriğe padding ekler */
+        background-color: #f5f5f5; /* Arka plan rengini belirler */
+        border-radius: 8px; /* Köşeleri yuvarlar */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge ekler */
+        text-align: center; /* İçeriği ortalar */
+    }
+
+        .shoping__discount h5 {
+            font-size: 1.5rem; /* Başlık boyutunu artırır */
+            margin-bottom: 15px; /* Başlık ile form arasına boşluk ekler */
+        }
+
+        .shoping__discount form {
+            display: flex; /* Flexbox ile düzenleme yapar */
+            justify-content: center; /* Form elemanlarını yatayda ortalar */
+            align-items: center; /* Form elemanlarını dikeyde ortalar */
+            gap: 10px; /* Elemanlar arasına boşluk ekler */
+        }
+
+        .shoping__discount input[type="text"] {
+            font-size: 1rem; /* Yazı tipi boyutunu artırır */
+            padding: 10px; /* İçerik ile kenar arasına boşluk ekler */
+            border: 1px solid #ccc; /* Kenarlık rengi belirler */
+            border-radius: 4px; /* Köşeleri yuvarlar */
+            width: 200px; /* Genişlik ayarı */
+            color:black;
+        }
+
+        .shoping__discount input::placeholder {
+            color: black; /* Placeholder metninin rengini siyah yapar */
+        }
+        
+</style>
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Ürün/Ürünler</th>
+                                <th>Fiyat</th>
+                                <th>Adet</th>
+                                <th>Toplam     Tutar</th>
+                                <th class="right-align" colspan="2">Sil</th>
+                  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Cart?.Lines ?? Enumerable.Empty<CartLine>())
+                            {
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="@item.Product.ImageUrl" style="width: 200px; height: auto;" alt="">
+                                        <h5 style="font-weight:bold;">@item.Product.Name</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        @item.Product.Price.ToString("c")
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="pro-qty">
+                                            <span class="dec qtybtn" data-id="@item.Product.Id">-</span>
+                                            <input type="text" name="quantity" value="@item.Quantity" id="quantityInput_@item.Product.Id">
+                                            <span class="inc qtybtn" data-id="@item.Product.Id">+</span>
+                                        </div>
+                                    </td>
+
+                                    <td class="shoping__cart__total" id="totalPrice_@item.Product.Id">
+                                        @((item.Product.Price * item.Quantity).ToString("c"))
+                                    </td>
+
+                                    <td colspan="5" style="text-align: right; padding-right: 0;">
+                                        <form asp-page-handler="Remove" method="post" style="display: inline;">
+                                            <input type="hidden" name="id" value="@item.Product.Id">
+                                            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl">
+                                            <button type="submit" class="btn btn-danger" style="display: inline-flex; align-items: center;">
+                                                <i class="fa-solid fa-basket-shopping" style="color: white;"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @if (Model.Cart.Lines.Count() == 0)
+        {
+            <div class="text-center">
+                <p class="text-center" style="font-weight:bold; font-size:20px; color:black;">Alışveriş sepetinizde ürün bulunmuyor. </p>
+                <p class="text-center" style="font-weight:bold; font-size:20px; color:black;">Beğendiğiniz ürünleri sepetinize ekleyerek sipariş verebilirsiniz. Alışveriş yapmak için tıklayın. </p>
+            </div>
+        }
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns cart-btn-right" style="background-color: #f5f5f5; padding: 20px 30px; text-align: center;">
+                    <a class="cart-btn-right"
+                       style="background-color: #f5f5f5; color: #000; padding: 15px 30px; font-size: 22px; border-radius: 6px; text-decoration: none; display: inline-block;"
+                       asp-controller="Product"
+                       asp-action="Index">
+                        Alışverişe Devam Et
+                    </a>
+                </div>
+
+
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__continue">
+                    <div class="shoping__discount">
+                        <h5>Hediye Kodu</h5>
+                        <br />
+                        <form action="#">
+                            <input type="text" placeholder="Kupon Kodunu Giriniz" style="color:black;">
+                            <button type="submit" class="site-btn">Kodu Uygula</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <h5 style="font-size: 1.5rem; font-weight: bold;">Sepet Toplamı</h5>
+                    <ul style="font-size: 1.2rem; list-style-type: none; padding: 0;">
+                        <li style="margin-bottom: 10px; font-size: 1.2rem;">Ara Fiyat Toplamı <span id="cartSubtotal" style="color: green; font-weight: bold; font-size: 1.2rem;">@Model.Cart.Total()</span></li>
+                        <li style="font-size: 1.2rem;">Toplam Fiyat <span id="cartTotal" style="color: green; font-weight: bold; font-size: 1.2rem; ">@Model.Cart.Total()</span></li>
+                    </ul>
+                    <form id="checkoutForm" asp-controller="Order" asp-action="Checkout" method="post">
+                        <input type="hidden" id="hiddenTotalPrice" name="totalPrice" value="@Model.Cart.Total()">
+                        <input type="hidden" id="hiddenCartData" name="cartData" value="">
+                        <button type="submit" class="btn btn-outline-success" style="font-size: 1.2rem; padding: 10px 20px;">Ödemeye Geç</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const decreaseButtons = document.querySelectorAll('.dec');
+    const increaseButtons = document.querySelectorAll('.inc');
+
+    function formatCurrency(value) {
+        return new Intl.NumberFormat('tr-TR', {
+            style: 'currency',
+            currency: 'TRY',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(value);
+    }
+
+    function updateTotal() {
+        let cartTotal = 0;
+        document.querySelectorAll('.shoping__cart__total').forEach(totalCell => {
+            const priceText = totalCell.textContent.replace('₺', '').trim().replace('.', '').replace(',', '.');
+            cartTotal += parseFloat(priceText);
+        });
+
+        const totalCell = document.querySelector('#cartTotal');
+        totalCell.textContent = formatCurrency(cartTotal);
+        document.querySelector('#hiddenTotalPrice').value = cartTotal.toFixed(2);
+    }
+
+    function saveCartToLocalStorage(cartLines) {
+        localStorage.setItem('cart', JSON.stringify(cartLines));
+    }
+
+    function loadCartFromLocalStorage() {
+        const cartData = localStorage.getItem('cart');
+        if (cartData) {
+            return JSON.parse(cartData);
+        }
+        return [];
+    }
+
+    function updateCartData() {
+        const cartLines = [];
+        document.querySelectorAll('.shoping__cart__table tbody tr').forEach(row => {
+            const productId = row.querySelector('.pro-qty input').id.split('_')[1];
+            const quantity = parseInt(row.querySelector('.pro-qty input').value, 10);
+            cartLines.push({ productId, quantity });
+        });
+
+        // Sepet verilerini sakla
+        saveCartToLocalStorage(cartLines);
+
+        // Sepet verilerini sunucuya gönder
+        fetch('/cart/update', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cartLines)
+        }).then(response => response.json())
+            .then(data => console.log('Cart updated:', data));
+    }
+
+    function initializeCart() {
+        const cartLines = loadCartFromLocalStorage();
+        cartLines.forEach(line => {
+            const input = document.querySelector(`#quantityInput_${line.productId}`);
+            if (input) {
+                input.value = line.quantity;
+                // Toplam tutarı güncelle
+                const priceText = input.closest('tr').querySelector('.shoping__cart__price').textContent.replace('₺', '').trim().replace('.', '').replace(',', '.');
+                const price = parseFloat(priceText);
+                const totalCell = input.closest('tr').querySelector('.shoping__cart__total');
+                totalCell.textContent = formatCurrency(price * line.quantity);
+            }
+        });
+        updateTotal();
+    }
+
+    decreaseButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = document.querySelector(`#quantityInput_${button.dataset.id}`);
+            let currentQuantity = parseInt(input.value, 10);
+            if (currentQuantity > 1) {
+                input.value = currentQuantity - 1;
+                const priceText = button.closest('tr').querySelector('.shoping__cart__price').textContent.replace('₺', '').trim().replace('.', '').replace(',', '.');
+                const price = parseFloat(priceText);
+                const totalCell = button.closest('tr').querySelector('.shoping__cart__total');
+                totalCell.textContent = formatCurrency(price * (currentQuantity - 1));
+                updateTotal();
+                updateCartData();
+            }
+        });
+    });
+
+    increaseButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = document.querySelector(`#quantityInput_${button.dataset.id}`);
+            let currentQuantity = parseInt(input.value, 10);
+            input.value = currentQuantity + 1;
+            const priceText = button.closest('tr').querySelector('.shoping__cart__price').textContent.replace('₺', '').trim().replace('.', '').replace(',', '.');
+            const price = parseFloat(priceText);
+            const totalCell = button.closest('tr').querySelector('.shoping__cart__total');
+            totalCell.textContent = formatCurrency(price * (currentQuantity + 1));
+            updateTotal();
+            updateCartData();
+        });
+    });
+
+    // Sayfa ilk yüklendiğinde sepeti başlat
+    initializeCart();
+
+    // Form gönderildiğinde sepet verilerini güncelle
+    document.getElementById('checkoutForm').addEventListener('submit', function () {
+        updateCartData();
+    });
+});
+
+
+
+</script>
+
+
+

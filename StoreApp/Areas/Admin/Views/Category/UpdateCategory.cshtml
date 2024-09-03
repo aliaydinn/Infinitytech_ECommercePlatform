@@ -1,0 +1,16 @@
+﻿@model CategoryUpdateDto
+
+<div class="card-body">
+    <h4 class="card-title" style="font-weight:bold;">Product Update Page</h4>
+    <form class="forms-sample" method="post" asp-area="Admin" asp-controller="Category" asp-action="UpdateCategory">
+
+        <div asp-validation-summary="All"></div>
+        <input asp-for="Id" type="hidden" />
+        <div class="form-group">
+            <label asp-for="Name" for="exampleInputUsername1">Category Name</label>
+            <input asp-for="Name" type="text" class="form-control" id="exampleInputUsername1" placeholder="Name">
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Update</button>
+        <button class="btn btn-warning" asp-controller="Category" asp-action="Index">Cancel</button>
+    </form>
+</div>

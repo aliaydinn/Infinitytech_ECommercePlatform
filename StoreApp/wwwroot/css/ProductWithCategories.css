@@ -1,0 +1,70 @@
+﻿.hero__categories__all {
+    padding: 1rem;
+    border: 2px solid #000000;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+    
+    .hero__categories__all ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .hero__categories__all li {
+        margin: 0.5rem 0;
+    }
+
+    .hero__categories__all a {
+        text-decoration: none;
+        color: black;
+        font-size: 20px; 
+        font-weight: bold;
+        display: block;
+        padding: 0.75rem; 
+        border-radius: 8px; 
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    }
+
+       
+        .hero__categories__all a:hover,
+        .hero__categories__all a:focus {
+            background-color: #007bff; 
+            color: white; 
+            transform: scale(1.05); 
+        }
+
+        
+        .hero__categories__all a.active {
+            background-color: #0056b3; 
+            color: white; 
+        }
+
+ul {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+}
+
+    ul li {
+        margin: 25px 0; 
+    }
+
+        ul li a {
+            display: block; 
+            padding: 10px 15px;
+            text-decoration: none; 
+            color: black; 
+            border: 3px solid #ddd;
+            border-radius: 10px; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            ul li a.active {
+                background-color: #4070f4; 
+                color: #fff; 
+            }
+
+            ul li a:hover {
+                background-color: #f4f4f4;
+            }

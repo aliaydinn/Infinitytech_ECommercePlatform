@@ -1,0 +1,55 @@
+﻿@page "/Complete/{Id?}"
+@model StoreApp.Pages.CompleteModel
+
+<!-- Sayfa İçeriği -->
+<div class="container mt-5">
+    <div class="text-center">
+        <!-- Başlık -->
+        <h1 class="display-4 text-primary font-weight-bold mb-4">
+            Teşekkürler!
+        </h1>
+
+        <!-- Sipariş Onay Mesajı -->
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h2 class="font-weight-bold">Siparişiniz Başarıyla Oluşturulmuştur!</h2>
+            <p class="lead">Bizi tercih ettiğiniz için teşekkür ederiz. Sipariş numaranız: <span class="font-weight-bold">#@Model.Id</span></p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <!-- Devam Et Butonu -->
+        <a class="btn btn-black btn-lg mt-4" asp-controller="Product" asp-action="Index">
+            Alışverişe Devam Edin
+        </a>
+    </div>
+</div>
+
+<!-- Stil Güncellemeleri -->
+<style>
+    .alert-success {
+        border-radius: 1rem;
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        padding: 2rem;
+    }
+
+    .alert h2 {
+        font-size: 2rem;
+    }
+
+    .alert p {
+        font-size: 1.25rem;
+    }
+
+    .btn-black {
+        background-color: #000;
+        color: #fff;
+        border: 1px solid #000;
+        font-size: 1.25rem; /* Buton metin boyutunu artırır */
+        padding: 1rem 2rem; /* Buton içindeki boşluğu artırır */
+    }
+
+      
+</style>

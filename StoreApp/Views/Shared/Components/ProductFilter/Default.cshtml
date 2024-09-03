@@ -1,0 +1,88 @@
+﻿@model List<Product>
+@{
+    var date = DateTime.Now.Date;
+}
+<style>
+    .latest-product__item-wrapper {
+        border: 1px solid #ddd; 
+        padding: 18px; 
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    }
+
+    .latest-product__item {
+        display: block;
+        text-decoration: none;
+        color: inherit; 
+    }
+
+    .latest-product__item__pic img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .latest-product__item__text {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+</style>
+<div class="sidebar__item">
+    <h4>Arama</h4>
+    <div class="price-range-wrap">
+        <form method="get" asp-controller="Product" asp-action="Index">
+            <input class="form-control" type="text" placeholder="Ne aramıştınız ?" name="keyword" style="font-size: 1.2em; padding: 10px;">
+            <br />
+            <button type="submit" class="btn btn-outline-secondary" style="font-size: 1.2em; padding: 10px 20px;">Ara</button>
+
+            <br /><br />
+            <br />
+            <div>
+                <h4>Fiyat</h4>
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="En Düşük" name="minPrice" style="font-size: 1.2em; padding: 10px;">
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="En Yüksek" name="maxPrice" style="font-size: 1.2em; padding: 10px;">
+            </div>
+            <button type="submit" class="btn btn-outline-secondary" style="font-size: 1.2em; padding: 10px 20px;">Filtrele</button>
+            <br /><br />
+        </form>
+
+        <br />
+        <br />
+        <div>
+            <h4>Son Gezdikleriniz</h4>
+        </div>
+        @if (Model.Any())
+        {
+            
+            <br />
+            @foreach (var item in Model)
+            {
+                <div class="latest-product__item-wrapper">
+                    <a asp-controller="Product" asp-action="GetProductDetail" asp-route-productId="@item.Id" class="latest-product__item">
+                        <div class="latest-product__item__pic">
+                            <img src="@item.ImageUrl" style="width:150px; height:90px;" alt="">
+                        </div>
+                        <div class="latest-product__item__text">
+                            <h6>@item.Name</h6>
+                            <span>@item.Price.ToString("C2")</span>
+                        </div>
+                    </a>
+                </div>
+                <br>
+            }
+        }
+        else
+        {
+            <h4> Şuanlık herhangi bir ürüne göz gezdirmediniz </h4>
+        }
+       
+
+
+    </div>
+</div>
+

@@ -1,0 +1,24 @@
+﻿.btn-custom {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+    cursor: pointer;
+}
+
+    .btn-custom:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+    .btn-custom:active {
+        background-color: #1e7e34;
+        transform: scale(0.98);
+    }

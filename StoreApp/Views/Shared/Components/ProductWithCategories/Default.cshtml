@@ -1,0 +1,21 @@
+﻿@model IQueryable<Category>
+<head>
+    <link rel="stylesheet" href="~/css/ProductWithCategories.css">
+</head>
+
+<div class="hero__categories__all">
+    <i class="fa fa-bars" style="color:black; font-size: 24px;"></i>
+    <span style="color:black; font-size: 20px; font-weight: bold;">Tüm Kategoriler</span>
+</div>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a asp-controller="Product" asp-action="Index" asp-route-categoryId="@item.Id" class="@(ViewData["ActiveCategoryId"]?.ToString() == item.Id.ToString() ? "active" : "")">
+                @item.Name (@(item.Products?.Count() ?? 0))
+            </a>
+        </li>
+    }
+
+</ul>

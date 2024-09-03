@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!-- Başlık ve meta etiketler -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>InfinityTech Makina</title>
+    <link rel="icon" type="image/png" href="~/images/log.jpg">
+
+    <!-- Google Font ve CSS dosyaları -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/Ogani/ogani-master/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Ogani/ogani-master/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Ogani/ogani-master/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Ogani/ogani-master/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/Ogani/ogani-master/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Ogani/ogani-master/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Ogani/ogani-master/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Ogani/ogani-master/css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        .header__top__left ul li {
+          
+            font-size: 16px; /* Yazı boyutunu büyütür, ihtiyaca göre ayarlayabilirsiniz */
+        }
+
+        .header__cart a {
+            color: black; /* Metin rengini siyah yapar */
+            font-size: 20px; /* Metin boyutunu ayarlar */
+            font-weight: bold; /* Metni kalın yapar */
+            text-decoration: none; /* Alt çizgiyi kaldırır (isteğe bağlı) */
+        }
+
+        .header__cart i {
+            margin-right: 8px; /* Simge ile metin arasında boşluk ekler */
+        }
+
+
+        .footer__label {
+            font-weight: bold;
+        }
+
+        .footer__title {
+            font-weight: bold; /* Kalın yapar */
+            font-size: 1.9rem; /* İstediğiniz büyüklüğü ayarlayın, örneğin 1.25rem veya px kullanabilirsiniz */
+        }
+
+        .hero__search__phone {
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .hero__search__phonex{
+            display: flex;
+            align-items: center;
+            position: relative; /* Konteynerin pozisyonunu ayarlar */
+            left: -150px; /* Div'i sola kaydırır */
+        }
+
+        .hero__search__phone__icon {
+            font-size: 2.2rem; /* Simgenin boyutunu artırır */
+            color: #000; /* Koyu siyah renk, daha koyu yapmak için */
+            margin-right: 10px; /* Simge ile metin arasına boşluk ekler */
+        }
+
+        .header__top__left {
+            display: flex;
+            flex-direction: column; /* Liste öğelerini dikey olarak hizalar */
+            /* İçeriği yatay olarak ortalar */
+            /* Metni ortalar */
+        }
+
+            .header__top__left ul {
+                list-style: none; /* Liste işaretlerini kaldırır */
+                padding: 0; /* İçerik etrafındaki boşlukları kaldırır */
+                margin: 0; /* Varsayılan margin değerlerini kaldırır */
+            }
+
+            .header__top__left li {
+                margin-bottom: 10px; /* Liste öğeleri arasına boşluk ekler */
+                font-size: 16px; /* Yazı tipi boyutunu belirler */
+            }
+
+            .header__top__left i {
+                font-size: 20px; /* Simge boyutunu artırır */
+                margin-right: 8px; /* Simge ile metin arasına boşluk ekler */
+            }
+
+
+        .hero__search__phone__text h5 {
+            font-size: 1.5rem; /* Telefon numarasının boyutunu büyütür */
+            font-weight: bold; /* Telefon numarasını kalın yapar */
+            margin: 0; /* Üst ve alt boşlukları sıfırlar */
+        }
+
+        .hero__search__phone__text span {
+            font-size: 1rem; /* Alt metin boyutunu belirler */
+            color: #666; /* Alt metin rengini açık gri yapar */
+        }
+
+        .footer {
+            padding: 20px 0;
+            background-color: #f8f9fa; /* Footer arka plan rengi */
+            border-top: 1px solid #e5e5e5; /* Footer üst sınır çizgisi */
+            clear: both; /* Floating elemanlardan etkilenmemesi için */
+            position: relative; /* Diğer elemanlarla uyumlu yerleşim sağlar */
+        }
+
+        .header__menu > ul > li > a {
+            font-size: 16px; /* Ana menü başlıklarının yazı boyutunu büyütür */
+            border:none; !important
+        }
+
+        .whatsapp-support {
+            background-color: #25D366; /* WhatsApp yeşil rengi */
+            color: white;
+            border-radius: 25px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+            .whatsapp-support .icon {
+                font-size: 24px;
+                margin-right: 10px;
+            }
+
+            .whatsapp-support .text {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+        .header__top__right__social a {
+            font-size: 20px; /* Sosyal medya simgelerinin boyutunu artırır */
+            color: #333; /* Simge renklerini belirleyin */
+            margin-right: 15px; /* Simgeler arasında boşluk bırakır */
+        }
+
+        .header__top__right__auth a {
+            font-size: 18px; /* Giriş/Çıkış bağlantı metinlerinin boyutunu artırır */
+            color: #333; /* Bağlantı renklerini belirler */
+            font-weight: bold; /* Bağlantı metinlerini kalın yapar */
+        }
+
+        .header__top__right__auth i {
+            font-size: 20px; /* Kullanıcı simgesinin boyutunu artırır */
+            margin-right: 8px; /* Simgeler ile metin arasına boşluk bırakır */
+        }
+
+       
+        .footer__copyright__payment img {
+            width: 900px; /* İstediğiniz genişliği ayarlayın */
+            height: auto; /* Yüksekliği orantılı olarak ayarlar */
+            max-width: 100%; /* Resmin kontejneri aşmamasını sağlar */
+        }
+   
+
+    </style>
+</head>
+
+<body>
+    
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> ınftechmakina@gmail.com</li>
+                                <li>Salça Makinası İmalatı</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                            
+                            <div class="header__top__right__auth">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-controller="Account" asp-action="Logout"><i class="fa fa-user"></i> Çıkış</a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Account" asp-action="Login"><i class="fa fa-user"></i> Giriş Yap ve Üye Ol</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="container">
+            <div class="row align-items-center" >
+                <div class="col-lg-3">
+                    <div class="header__logo" style="margin-left: -70px;">
+                        <a asp-controller="Home" asp-action="Index">
+                            <img src="~/images/aaa1.png" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+                            <li><a asp-controller="AboutUs" asp-action="Index">Hakkımızda</a></li>
+                            <li><a asp-controller="Product" asp-action="Index">Ürünler(@await Component.InvokeAsync("ProductSummary"))</a></li>
+                            <li><a href="./blog.html">Videolar</a></li>
+                           
+                            <li><a asp-controller="Contact" asp-action="Index">İletişim</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li>
+                                <a asp-area="" asp-page="/cart" style="color:black; font-size:20px;  ">
+                                    <i class="fa-solid fa-cart-shopping"></i> Sepetim
+                                    (@await Component.InvokeAsync("CartSummary"))
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div>
+        @RenderBody()
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+ 
+
+
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <br />
+                    <br />
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a asp-controller="Home" asp-action="Index"><img src="~/images/aaa.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <br />
+                    <br />
+                    <div class="footer__widget">
+                        <h6 class="footer__title">InfinityTech Makina</h6>
+                        <br />
+                        <ul>
+                            <li><span class="footer__label">Adres:</span> Çınarköy mah. 5009 sok. No:5/AJ, 35730 Kemalpaşa/İzmir</li>
+                            <li><span class="footer__label">Telefon:</span> +90 0552 222 2222</li>
+                            <li><span class="footer__label">Email:</span> ınftechmakina@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <br />
+                    <br />
+                    <div class="hero__search__phonex">
+                        <div class="hero__search__phone__icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="hero__search__phone__text">
+                            <h5>+90 0552 222 2222</h5>
+                            <span>7/24 Hizmetinizdeyiz</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer__copyright">
+                <div class="footer__copyright__text">
+                    <p>
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> InfinityTech Makina | Tüm Hakları Saklıdır.
+                    </p>
+                </div>
+                <div class="footer__copyright__payment">
+                    <img src="//ideacdn.net/idea/ia/23/themes/selftpl_6535796f596b7/assets/uploads/footer_ssl_image.png?revision=7.2.8.4-1-1719930476" alt="">
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Footer Section End -->
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+
+
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="2770cca9f64e4ae095d237d50350c2d1" data-requestMappingFromServer="false" data-connectUrl="http://localhost:60752/99cf51f9654945babc23cc34c046e813/browserLink"></script>
+    <!-- End Browser Link -->
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="5428f7209c4e41e480001a339f34efc3" data-requestMappingFromServer="false" data-connectUrl="http://localhost:13334/484acf2f1a9f4595913073c6b56aa485/browserLink"></script>
+    <!-- End Browser Link -->
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+
+</html>
